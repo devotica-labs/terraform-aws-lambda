@@ -1,0 +1,51 @@
+#
+# Canonical configuration for README.md (cloudposse-style doc standard,
+# native to Devotica). Run `make readme` to regenerate the terraform-docs
+# section of README.md.
+#
+
+name: terraform-aws-lambda
+license: APACHE2
+github_repo: devotica-labs/terraform-aws-lambda
+
+badges:
+  - name: CI
+    image: https://github.com/devotica-labs/terraform-aws-lambda/actions/workflows/ci.yml/badge.svg
+    url: https://github.com/devotica-labs/terraform-aws-lambda/actions/workflows/ci.yml
+  - name: Release
+    image: https://github.com/devotica-labs/terraform-aws-lambda/actions/workflows/release.yml/badge.svg
+    url: https://github.com/devotica-labs/terraform-aws-lambda/actions/workflows/release.yml
+  - name: License
+    image: https://img.shields.io/badge/License-Apache_2.0-blue.svg
+    url: LICENSE
+
+related:
+  - name: terraform-aws-vpc
+    description: Provides the subnets and network for vpc_config.
+    url: https://github.com/devotica-labs/terraform-aws-vpc
+  - name: terraform-aws-kms
+    description: Supplies the customer-managed key for log/env encryption.
+    url: https://github.com/devotica-labs/terraform-aws-kms
+
+description: |-
+  Terraform module for an **AWS Lambda function** with a least-privilege
+  execution role, an encrypted and retained CloudWatch log group, and optional
+  VPC attachment. Ships a fintech baseline: Active X-Ray tracing, a pre-created
+  30-day log group (KMS-encryptable), automatic VPC-access permissions, and a
+  filename-or-S3 deployment artifact.
+
+introduction: |-
+  This module creates an [AWS Lambda function](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html)
+  with its IAM execution role (trusting `lambda.amazonaws.com`), a CloudWatch
+  log group at `/aws/lambda/<function-name>` with bounded retention and optional
+  KMS encryption, and — when `vpc_config` is set — the VPC-access execution
+  policy. Fintech defaults enable Active tracing and 30-day log retention;
+  additional IAM policy ARNs extend the role for downstream access.
+
+usage: |-
+  See [`examples/complete`](examples/complete) for the full surface (VPC, env
+  vars, KMS, reserved concurrency, extra policies) and
+  [`examples/basic`](examples/basic) for a minimal function packaged from an
+  inline artifact.
+
+contributors: []
