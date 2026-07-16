@@ -8,8 +8,6 @@ locals {
   role_name      = "${local.function_name}-role"
   log_group_name = "/aws/lambda/${local.function_name}"
 
-  vpc_enabled = local.enabled && var.vpc_config != null
-
   # Managed execution-role policies. Every function gets basic execution (writes
   # to CloudWatch Logs); a VPC-attached function also gets VPC access (manages
   # the ENIs). Static arn:aws is fine — this nativized module targets the aws

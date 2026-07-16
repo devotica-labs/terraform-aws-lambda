@@ -4,6 +4,11 @@ plugin "aws" {
   source  = "github.com/terraform-linters/tflint-ruleset-aws"
 }
 
+# tflint statically evaluates the function name with the label defaults
+# (empty id), wrongly flagging an invalid name. Real usage supplies
+# namespace/stage/name; AWS enforces the real constraint at apply.
+rule "aws_lambda_function_invalid_function_name" { enabled = false }
+
 rule "terraform_deprecated_interpolation" { enabled = true }
 rule "terraform_documented_outputs"       { enabled = true }
 rule "terraform_documented_variables"     { enabled = true }

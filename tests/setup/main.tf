@@ -1,6 +1,7 @@
 # Test helper — packages a tiny inline handler into a zip the integration test
 # feeds to the module as its deployment artifact.
 terraform {
+  required_version = ">= 1.7.0, < 2.0.0"
   required_providers {
     archive = {
       source  = "hashicorp/archive"
