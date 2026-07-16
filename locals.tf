@@ -1,7 +1,8 @@
 locals {
   # Function name defaults to the composed label id; an explicit
-  # function_name overrides it.
-  function_name = coalesce(var.function_name, local.id)
+  # function_name overrides it. Avoid coalesce() so static analysis (tflint)
+  # doesn't error when both are empty under variable defaults.
+  function_name = var.function_name != null && var.function_name != "" ? var.function_name : local.id
 
   # Execution role and log group are named off the function.
   role_name      = "${local.function_name}-role"
